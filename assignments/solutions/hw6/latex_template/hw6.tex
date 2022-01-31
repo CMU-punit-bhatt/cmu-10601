@@ -1,0 +1,1304 @@
+\documentclass[11pt,addpoints,answers]{exam}
+%-----------------------------------------------------------------------------
+% PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-----------------------------------------------------------------------------
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsfonts}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage{url}
+\usepackage{xfrac}
+\usepackage{natbib}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{paralist}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+%\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{environ}
+\usepackage{times}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{parskip} % For NIPS style paragraphs.
+\usepackage[compact]{titlesec} % Less whitespace around titles
+\usepackage[inline]{enumitem} % For inline enumerate* and itemize*
+\usepackage{datetime}
+\usepackage{comment}
+% \usepackage{minted}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage[final]{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes,decorations}
+\usepackage{framed}
+\usepackage{booktabs}
+\usepackage{cprotect}
+\usepackage{verbatimbox}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{mathtools} % For drcases
+\usepackage{cancel}
+\usepackage[many]{tcolorbox}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{wasysym}
+\usepackage{transparent}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning, arrows, automata}
+
+\CorrectChoiceEmphasis{}
+\checkedchar{\blackcircle}
+
+\newtcolorbox[]{your_solution}[1][]{%
+    % breakable,
+    enhanced,
+    nobeforeafter,
+    colback=white,
+    title=Your Answer,
+    sidebyside align=top,
+    box align=top,
+    #1
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Better numbering                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+% \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+% \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom commands                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blackcircle}{\tikz\draw[black,fill=black] (0,0) circle (1ex);}
+\renewcommand{\circle}{\tikz\draw[black] (0,0) circle (1ex);}
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\newcommand{\adj}[1]{\frac{\partial \ell}{\partial #1}}
+\newcommand{\chain}[2]{\adj{#2} = \adj{#1}\frac{\partial #1}{\partial #2}}
+\newcommand{\ntset}{test}
+
+% mathcal
+\newcommand{\Ac}{\mathcal{A}}
+\newcommand{\Bc}{\mathcal{B}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Dc}{\mathcal{D}}
+\newcommand{\Ec}{\mathcal{E}}
+\newcommand{\Fc}{\mathcal{F}}
+\newcommand{\Gc}{\mathcal{G}}
+\newcommand{\Hc}{\mathcal{H}}
+\newcommand{\Ic}{\mathcal{I}}
+\newcommand{\Jc}{\mathcal{J}}
+\newcommand{\Kc}{\mathcal{K}}
+\newcommand{\Lc}{\mathcal{L}}
+\newcommand{\Mc}{\mathcal{M}}
+\newcommand{\Nc}{\mathcal{N}}
+\newcommand{\Oc}{\mathcal{O}}
+\newcommand{\Pc}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\newcommand{\Rc}{\mathcal{R}}
+\newcommand{\Sc}{\mathcal{S}}
+\newcommand{\Tc}{\mathcal{T}}
+\newcommand{\Uc}{\mathcal{U}}
+\newcommand{\Vc}{\mathcal{V}}
+\newcommand{\Wc}{\mathcal{W}}
+\newcommand{\Xc}{\mathcal{X}}
+\newcommand{\Yc}{\mathcal{Y}}
+\newcommand{\Zc}{\mathcal{Z}}
+
+% mathbb
+\newcommand{\Ab}{\mathbb{A}}
+\newcommand{\Bb}{\mathbb{B}}
+\newcommand{\Cb}{\mathbb{C}}
+\newcommand{\Db}{\mathbb{D}}
+\newcommand{\Eb}{\mathbb{E}}
+\newcommand{\Fb}{\mathbb{F}}
+\newcommand{\Gb}{\mathbb{G}}
+\newcommand{\Hb}{\mathbb{H}}
+\newcommand{\Ib}{\mathbb{I}}
+\newcommand{\Jb}{\mathbb{J}}
+\newcommand{\Kb}{\mathbb{K}}
+\newcommand{\Lb}{\mathbb{L}}
+\newcommand{\Mb}{\mathbb{M}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Ob}{\mathbb{O}}
+\newcommand{\Pb}{\mathbb{P}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Sb}{\mathbb{S}}
+\newcommand{\Tb}{\mathbb{T}}
+\newcommand{\Ub}{\mathbb{U}}
+\newcommand{\Vb}{\mathbb{V}}
+\newcommand{\Wb}{\mathbb{W}}
+\newcommand{\Xb}{\mathbb{X}}
+\newcommand{\Yb}{\mathbb{Y}}
+\newcommand{\Zb}{\mathbb{Z}}
+
+% mathbf lowercase
+\newcommand{\av}{\mathbf{a}}
+\newcommand{\bv}{\mathbf{b}}
+\newcommand{\cv}{\mathbf{c}}
+\newcommand{\dv}{\mathbf{d}}
+\newcommand{\ev}{\mathbf{e}}
+\newcommand{\fv}{\mathbf{f}}
+\newcommand{\gv}{\mathbf{g}}
+\newcommand{\hv}{\mathbf{h}}
+\newcommand{\iv}{\mathbf{i}}
+\newcommand{\jv}{\mathbf{j}}
+\newcommand{\kv}{\mathbf{k}}
+\newcommand{\lv}{\mathbf{l}}
+\newcommand{\mv}{\mathbf{m}}
+\newcommand{\nv}{\mathbf{n}}
+\newcommand{\ov}{\mathbf{o}}
+\newcommand{\pv}{\mathbf{p}}
+\newcommand{\qv}{\mathbf{q}}
+\newcommand{\rv}{\mathbf{r}}
+\newcommand{\sv}{\mathbf{s}}
+\newcommand{\tv}{\mathbf{t}}
+\newcommand{\uv}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\wv}{\mathbf{w}}
+\newcommand{\xv}{\mathbf{x}}
+\newcommand{\yv}{\mathbf{y}}
+\newcommand{\zv}{\mathbf{z}}
+
+% mathbf uppercase
+\newcommand{\Av}{\mathbf{A}}
+\newcommand{\Bv}{\mathbf{B}}
+\newcommand{\Cv}{\mathbf{C}}
+\newcommand{\Dv}{\mathbf{D}}
+\newcommand{\Ev}{\mathbf{E}}
+\newcommand{\Fv}{\mathbf{F}}
+\newcommand{\Gv}{\mathbf{G}}
+\newcommand{\Hv}{\mathbf{H}}
+\newcommand{\Iv}{\mathbf{I}}
+\newcommand{\Jv}{\mathbf{J}}
+\newcommand{\Kv}{\mathbf{K}}
+\newcommand{\Lv}{\mathbf{L}}
+\newcommand{\Mv}{\mathbf{M}}
+\newcommand{\Nv}{\mathbf{N}}
+\newcommand{\Ov}{\mathbf{O}}
+\newcommand{\Pv}{\mathbf{P}}
+\newcommand{\Qv}{\mathbf{Q}}
+\newcommand{\Rv}{\mathbf{R}}
+\newcommand{\Sv}{\mathbf{S}}
+\newcommand{\Tv}{\mathbf{T}}
+\newcommand{\Uv}{\mathbf{U}}
+\newcommand{\Vv}{\mathbf{V}}
+\newcommand{\Wv}{\mathbf{W}}
+\newcommand{\Xv}{\mathbf{X}}
+\newcommand{\Yv}{\mathbf{Y}}
+\newcommand{\Zv}{\mathbf{Z}}
+
+% bold greek lowercase
+\newcommand{\alphav     }{\boldsymbol \alpha     }
+\newcommand{\betav      }{\boldsymbol \beta      }
+\newcommand{\gammav     }{\boldsymbol \gamma     }
+\newcommand{\deltav     }{\boldsymbol \delta     }
+\newcommand{\epsilonv   }{\boldsymbol \epsilon   }
+\newcommand{\varepsilonv}{\boldsymbol \varepsilon}
+\newcommand{\zetav      }{\boldsymbol \zeta      }
+\newcommand{\etav       }{\boldsymbol \eta       }
+\newcommand{\thetav     }{\boldsymbol \theta     }
+\newcommand{\varthetav  }{\boldsymbol \vartheta  }
+\newcommand{\iotav      }{\boldsymbol \iota      }
+\newcommand{\kappav     }{\boldsymbol \kappa     }
+\newcommand{\varkappav  }{\boldsymbol \varkappa  }
+\newcommand{\lambdav    }{\boldsymbol \lambda    }
+\newcommand{\muv        }{\boldsymbol \mu        }
+\newcommand{\nuv        }{\boldsymbol \nu        }
+\newcommand{\xiv        }{\boldsymbol \xi        }
+\newcommand{\omicronv   }{\boldsymbol \omicron   }
+\newcommand{\piv        }{\boldsymbol \pi        }
+\newcommand{\varpiv     }{\boldsymbol \varpi     }
+\newcommand{\rhov       }{\boldsymbol \rho       }
+\newcommand{\varrhov    }{\boldsymbol \varrho    }
+\newcommand{\sigmav     }{\boldsymbol \sigma     }
+\newcommand{\varsigmav  }{\boldsymbol \varsigma  }
+\newcommand{\tauv       }{\boldsymbol \tau       }
+\newcommand{\upsilonv   }{\boldsymbol \upsilon   }
+\newcommand{\phiv       }{\boldsymbol \phi       }
+\newcommand{\varphiv    }{\boldsymbol \varphi    }
+\newcommand{\chiv       }{\boldsymbol \chi       }
+\newcommand{\psiv       }{\boldsymbol \psi       }
+\newcommand{\omegav     }{\boldsymbol \omega     }
+
+% bold greek uppercase
+\newcommand{\Gammav     }{\boldsymbol \Gamma     }
+\newcommand{\Deltav     }{\boldsymbol \Delta     }
+\newcommand{\Thetav     }{\boldsymbol \Theta     }
+\newcommand{\Lambdav    }{\boldsymbol \Lambda    }
+\newcommand{\Xiv        }{\boldsymbol \Xi        }
+\newcommand{\Piv        }{\boldsymbol \Pi        }
+\newcommand{\Sigmav     }{\boldsymbol \Sigma     }
+\newcommand{\Upsilonv   }{\boldsymbol \Upsilon   }
+\newcommand{\Phiv       }{\boldsymbol \Phi       }
+\newcommand{\Psiv       }{\boldsymbol \Psi       }
+\newcommand{\Omegav     }{\boldsymbol \Omega     }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code highlighting with listings         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{light-gray}{gray}{0.95}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{Shell}{
+  keywords={tar, cd, make},
+  %keywordstyle=\color{bluekeywords}\bfseries,
+  alsoletter={+},
+  ndkeywords={python, py, javac, java, gcc, c, g++, cpp, .txt, octave, m, .tar},
+  %ndkeywordstyle=\color{bluekeywords}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  %stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]",
+  backgroundcolor = \color{light-gray}
+}
+
+\lstset{columns=fixed, basicstyle=\ttfamily,
+    backgroundcolor=\color{light-gray},xleftmargin=0.5cm,frame=tlbr,framesep=4pt,framerule=0pt}
+
+\newcommand{\emptysquare}{{\LARGE $\square$}\ \ }
+\newcommand{\filledsquare}{{\LARGE $\boxtimes$}\ \ }
+\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
+
+
+% \newcommand{\squaresolutionspace}[2][\emptysquare]{\newline #1}{#2}
+\def \squaresolutionspace#1{ \ifempty{#1} \emptysquare \else #1\hspace{0.75pt}\fi}
+
+
+\newcommand{\emptycircle}{{\LARGE $\fullmoon$}\ \ }
+\newcommand{\filledcircle}{{\LARGE $\newmoon$}\ \ }
+\def \circlesolutionspace#1{ \ifempty{#1} \emptycircle \else #1\hspace{0.75pt}\fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom box for highlights               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define box and box title style
+\tikzstyle{mybox} = [fill=blue!10, very thick,
+    rectangle, rounded corners, inner sep=1em, inner ysep=1em]
+
+% \newcommand{\notebox}[1]{
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{\textwidth}
+%     #1
+%     \end{minipage}
+% };
+% \end{tikzpicture}%
+% }
+
+\NewEnviron{notebox}{
+\begin{tikzpicture}
+\node [mybox] (box){
+    \begin{minipage}{\textwidth}
+        \BODY
+    \end{minipage}
+};
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands showing / hiding solutions     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% To HIDE SOLUTIONS (to post at the website for students), set this value to 0: 
+% \def\issoln{0}
+\def\issoln{1}
+% Some commands to allow solutions to be embedded in the assignment file.
+\ifcsname issoln\endcsname \else \def\issoln{1} \fi
+% Default to an empty solutions environ.
+\NewEnviron{soln}{}{}
+\if\issoln 1
+% Otherwise, include solutions as below.
+\RenewEnviron{soln}{
+    \leavevmode\color{red}\ignorespaces
+    % \textbf{Solution} 
+    \BODY
+}{}
+\fi
+
+%% To HIDE TAGS set this value to 0:
+\def\showtags{0}
+%%%%%%%%%%%%%%%%
+\ifcsname showtags\endcsname \else \def\showtags{1} \fi
+% Default to an empty tags environ.
+\NewEnviron{tags}{}{}
+\if\showtags 1
+% Otherwise, include solutions as below.
+\RenewEnviron{tags}{
+    \fbox{
+    \leavevmode\color{blue}\ignorespaces
+    \textbf{TAGS:} \texttt{\url{\BODY}}
+    }
+    \vspace{-.5em}
+}{}
+\fi
+
+% QUESTION AUTHORS environment
+\newenvironment{qauthor}{\leavevmode\color{blue}\ignorespaces }{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for customizing the assignment %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\courseNum}{10-301 / 10-601}
+\newcommand{\courseName}{Introduction to Machine Learning}
+\newcommand{\courseSem}{Fall 2021}
+\newcommand{\courseUrl}{\url{http://mlcourse.org}}
+\newcommand{\hwNum}{Homework 6}
+\newcommand{\hwTopic}{Learning Theory and Generative Models}
+\newcommand{\hwName}{\hwNum: \hwTopic}
+\newcommand{\outDate}{Oct. 21, 2021}
+\newcommand{\dueDate}{Oct. 28, 2021}
+\newcommand{\taNames}{Catherine, Zachary, Ari, Siyuan, Anoushka}
+
+%\pagestyle{fancyplain}
+\newcommand{\homeworktype}{\string written}
+\lhead{\hwName}
+\rhead{\courseNum}
+\cfoot{\thepage{} of \numpages{}}
+
+\title{\textsc{\hwNum}\\
+\textsc{\hwTopic}
+\thanks{Compiled on \today{} at \currenttime{}}\\
+\vspace{1em}
+} % Title
+
+
+\author{\textsc{\large \courseNum{} \courseName{} (\courseSem)}\\
+\courseUrl
+\vspace{1em}\\
+  OUT: \outDate \\
+  DUE: \dueDate \\
+  TAs: \taNames\\
+}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Useful commands for typesetting the questions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand \expect {\mathbb{E}}
+\newcommand \mle [1]{{\hat #1}^{\rm MLE}}
+\newcommand \map [1]{{\hat #1}^{\rm MAP}}
+\newcommand \argmax {\operatorname*{argmax}}
+\newcommand \argmin {\operatorname*{argmin}}
+\newcommand \code [1]{{\tt #1}}
+\newcommand \datacount [1]{\#\{#1\}}
+\newcommand \ind [1]{\mathbb{I}\{#1\}}
+\newcommand{\solo}{\textbf{[SOLO]} }
+\newcommand{\group}{\textbf{[GROUP]} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document configuration %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't display a date in the title and remove the white space
+\predate{}
+\postdate{}
+\date{}
+
+% Don't display an author and remove the white space
+%\preauthor{}
+%\postauthor{}
+
+%%%%%%%%%%%%%%%%%%
+% Begin Document %
+%%%%%%%%%%%%%%%%%% 
+
+\begin{document}
+
+\maketitle
+
+\begin{notebox}
+Homework 6 covers topics on learning theory, MLE/MAP, Naive Bayes, and revisits neural networks, logistic regression and regularization. The homework includes multiple choice, True/False, and short answer questions. 
+\end{notebox}
+\newcommand \maxsubs {10 }
+\section*{START HERE: Instructions}
+\begin{itemize}
+
+\item \textbf{Collaboration Policy}: Please read the collaboration policy here: \url{http://www.cs.cmu.edu/~mgormley/courses/10601/syllabus.html}
+
+\item\textbf{Late Submission Policy:} See the late submission policy here: \url{http://www.cs.cmu.edu/~mgormley/courses/10601/syllabus.html}
+
+\item\textbf{Submitting your work:} You will use Gradescope to submit
+  answers to all questions and code. Please
+  follow instructions at the end of this PDF to correctly submit all your code to Gradescope.
+
+  \begin{itemize}
+    
+ % COMMENT IF NOT USING CANVAS
+\begin{comment}
+  \item \textbf{Canvas:} Canvas (\url{https://canvas.cmu.edu}) will be
+    used for quiz-style problems (e.g. multiple choice, true / false,
+    numerical answers). Grading is done automatically.
+    %
+    You may only \textbf{submit once} on canvas, so be sure of your
+    answers before you submit. However, canvas allows you to work on
+    your answers and then close out of the page and it will save your
+    progress.  You will not be granted additional submissions, so
+    please be confident of your solutions when you are submitting your
+    assignment.
+    %
+    {\color{red} The above is true for future assignments, but this one
+    allows {\bf unlimited submissions}.}
+\end{comment}
+    
+  % COMMENT IF NOT USING GRADESCOPE
+   \item \textbf{Written:} For written problems such as short answer, multiple choice, derivations, proofs, or plots, please use the provided template. Submissions can be handwritten onto the template, but should be labeled and clearly legible. If your writing is not legible, you will not be awarded marks. If your scanned submission misaligns the template, there will be a 5\% penalty. Alternatively, submissions can be written in LaTeX. 
+   Each derivation/proof should be completed in the boxes provided. If you do not follow the template, your assignment may not be graded correctly by our AI assisted grader.
+
+  %   COMMENT IF NOT USING GRADESCOPE AUTOGRADER
+  \ifthenelse{\equal{\homeworktype}{\string written}}{}{
+\item \textbf{Programming:} You will submit your code for programming questions on the homework to Gradescope (\url{https://gradescope.com}). After uploading your code, our grading scripts will autograde your assignment by running your program on a virtual machine (VM). When you are developing, check that the version number of the programming language environment (e.g. Python 3.9.6, OpenJDK 11.0.11, g++ 7.5.0) and versions of permitted libraries (e.g.  \texttt{numpy} 1.21.2 and \texttt{scipy} 1.7.1) match those used on Gradescope. You have \maxsubs free Gradescope programming submissions. After \maxsubs submissions, you will begin to lose points from your total programming score. We recommend debugging your implementation on your local machine (or the Linux servers) and making sure your code is running correctly first before submitting you code to Gradescope.}
+
+  \end{itemize}
+  
+\ifthenelse{\equal{\homeworktype}{\string written}}{}{\item\textbf{Materials:} The data that you will need in order to complete this assignment is posted along with the writeup and template on Piazza.}
+
+\end{itemize}
+
+
+\ifthenelse{\equal{\homeworktype}{\string written}}{}{\begin{notebox}
+\paragraph{Linear Algebra Libraries} When implementing machine learning algorithms, it is often convenient to have a linear algebra library at your disposal. In this assignment, Java users may use EJML\footnote{\url{https://ejml.org}} or ND4J\footnote{\url{https://javadoc.io/doc/org.nd4j/nd4j-api/latest/index.html}} and C++ users may use Eigen\footnote{\url{http://eigen.tuxfamily.org/}}. Details below. 
+%
+(As usual, Python users have NumPy.)
+%
+\begin{description}
+\item[EJML for Java] EJML is a pure Java linear algebra package with three interfaces. We strongly recommend using the SimpleMatrix interface. The autograder will use EJML version 0.41. When compiling and running your code, we will add the additional command line argument {\footnotesize{\lstinline{-cp "linalg_lib/ejml-v0.41-libs/*:linalg_lib/nd4j-v1.0.0-M1.1-libs/*:./"}}}
+to ensure that all the EJML jars are on the classpath as well as your code. 
+
+\item[ND4J for Java] ND4J is a library for multidimensional tensors with an interface akin to Python's NumPy. The autograder will use ND4J version 1.0.0-M1.1. When compiling and running your code, we will add the additional command line argument {\footnotesize{\lstinline{-cp "linalg_lib/ejml-v0.41-libs/*:linalg_lib/nd4j-v1.0.0-M1.1-libs/*:./"}}} to ensure that all the ND4J jars are on the classpath as well as your code. 
+
+\item[Eigen for C++] Eigen is a header-only library, so there is no linking to worry about---just \lstinline{#include} whatever components you need. The autograder will use Eigen version 3.4.0. The command line arguments above demonstrate how we will call you code. When compiling your code we will include, the argument \lstinline{-I./linalg_lib} in order to include the \lstinline{linalg_lib/Eigen} subdirectory, which contains all the headers.
+
+\end{description} 
+We have included the correct versions of EJML/ND4J/Eigen in the \lstinline{linalg_lib.zip} posted on the Coursework page of the course website for your convenience. It contains the same \lstinline{linalg_lib/} directory that we will include in the current working directory when running your tests. Do {\bf not} include EJML, ND4J, or Eigen in your homework submission; the autograder will ensure that they are in place. 
+\end{notebox}}
+\clearpage
+
+\section*{Instructions for Specific Problem Types}
+
+For ``Select One" questions, please fill in the appropriate bubble completely:
+
+\begin{quote}
+\textbf{Select One:} Who taught this course?
+\begin{list}{}
+     \item\CIRCLE{} Matt Gormley / Henry Chai
+     \item\Circle{} Marie Curie
+     \item\Circle{} Noam Chomsky
+\end{list}
+\end{quote}
+
+
+If you need to change your answer, you may cross out the previous answer and bubble in the new answer:
+
+\begin{quote}
+\textbf{Select One:} Who taught this course?
+\begin{list}{}
+     \item\CIRCLE{} Matt Gormley / Henry Chai
+     \item\Circle{} Marie Curie\\
+     \xcancel{\CIRCLE}{} Noam Chomsky
+\end{list}
+\end{quote}
+
+
+For ``Select all that apply" questions, please fill in all appropriate squares completely:
+
+\begin{quote}
+\textbf{Select all that apply:} Which are scientists?
+{
+    \checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+     \choice Stephen Hawking 
+     \CorrectChoice Albert Einstein
+     \choice Isaac Newton
+     \choice None of the above
+    \end{checkboxes}
+    }
+\end{quote}
+
+Again, if you need to change your answer, you may cross out the previous answer(s) and bubble in the new answer(s):
+
+\begin{quote}
+\textbf{Select all that apply:} Which are scientists?
+    \begin{list}{}
+    \item $\blacksquare$ Stephen Hawking 
+    \item $\blacksquare$ Albert Einstein
+    \item $\blacksquare$ Isaac Newton\\
+    \xcancel{$\blacksquare$} I don't know
+\end{list}
+\end{quote}
+
+For questions where you must fill in a blank, please make sure your final answer is fully included in the given space. You may cross out answers or parts of answers, but the final answer must still be within the given space.
+
+\begin{quote}
+\textbf{Fill in the blank:} What is the course number?
+
+\begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \begin{center}\huge10-601\end{center}
+    \end{tcolorbox}\hspace{2cm}
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \begin{center}\huge10-\xcancel{7}601\end{center}
+    \end{tcolorbox}
+\end{quote}
+
+\clearpage
+\clearpage
+\newcommand \vcdim {\text{VC}(\mathcal{H})}
+
+\section{Neural Networks, Logistic Regression, Regularization Revisited}
+Imagine you work for a pharmaceutical company that is trying to predict whether certain patients will respond well to a new drug. Specifically, these patients have high blood pressure in their lungs, a condition known as pulmonary hypertension. Doctors recommend that the best predictors of a treatment effect is the patient's heart function (measured by cardiac output) and the blood pressure in their lungs (pulmonary blood pressure). You plot the data and visualize the following:
+    
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{drawn_patients.png}
+        \end{figure}
+\begin{questions}
+    \question[3] \solo Draw on the graph above the decision boundaries of a trained neural network that minimizes the training error when classifying Good Responders vs all others (Poor or Average). Assume the neural network has two hidden units and one hidden layer. What is the smallest training error you can achieve?
+    
+        \textbf{Fill in the blank (write answer as a fraction):}
+    
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \vspace{5pt}
+    \hspace{5pt}
+    0
+    \end{tcolorbox}
+    
+    
+    \question[2] \solo Using your decision boundaries above, assuming a logistic activation function, which point has the highest probability of being a Good Responder? Provide the point number as shown on the graph (points are labeled by their $y$ value).
+    
+            \textbf{Fill in the blank:}
+    
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \vspace{5pt}
+    \hspace{5pt}
+    7.50
+    \end{tcolorbox}
+    
+    
+    \question[2] \solo True or False: Increasing the number of hidden units of a neural network will always guarantee a lower training error. 
+    
+    \begin{checkboxes}
+        \choice True
+        \CorrectChoice False
+        % Not if they(weights) are initialized to zeros
+    \end{checkboxes}
+    
+
+
+    \question[2] \solo Convolutional neural networks often consist of convolutional layers, max-pooling layers, and fully-connected layers. Select all the layer types below that have parameters (i.e. weights) which can be learned by gradient descent / backpropagation.
+    
+    \textbf{Select all that apply:}
+    {
+    \checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+        \begin{checkboxes}
+            \CorrectChoice convolutional layer
+            \choice max-pooling layer
+            \CorrectChoice fully-connected layer
+        \end{checkboxes}
+    }
+    
+    \question[2] \solo Regularization.
+
+Which of the following are true about regularization?
+    \textbf{Select all that apply:}
+    {%
+    \checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \CorrectChoice One of the goals of regularization is combating overfitting.  
+        \choice A model with regularization fits the training data better than a model without regularization 
+        \CorrectChoice The L-0 norm (number of non-zero parameters) is rarely used in practice in part because it is non-differentiable. 
+        \CorrectChoice One way to understand regularization is that it attempts to follow Occam's razor and make the learning algorithm prefer "simpler" solutions.
+    \end{checkboxes}
+    }
+    
+    
+\question[6] \solo Regularization in Linear Regression. 
+
+When performing linear regression, which of the following options will \textbf{not} increase mean-squared training error:
+    
+    \textbf{Select all that apply:}
+        {%
+    \checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+        \begin{checkboxes}
+        \CorrectChoice Adding higher-order functions of the features as separate features
+        % I feel this could increase it as well. There's no gurantee it will decrease.
+        % I have been convinced other wise that this could lead to a complex function that could lead to better overfitting.
+        \choice Increasing the regularization weight
+        % will for sure increase.
+        \choice For the same weight on the regularizer, using an L1 regularizer instead of an L2
+        % I mean if the weights are between 0 and 1 then L2 would be less than L1.
+        \choice For the same weight on the regularizer, using an L1 regularizer instead of an L0
+        % Similar logic. There's no guarantee here.
+        \choice None of the above
+        \end{checkboxes}
+        }
+
+    
+    \question[3] \group Recall the convolution operation in CNN from lecture. A kernel, or a convolutional filter, is a small matrix that can be used for blurring, sharpening, embossing, edge detection, etc. Given that convolving the below black-and-white picture (labeled as Original) with kernel $X$ gives output image (a), choose the most probable output image for kernel $Y$.
+    \begin{center}
+        \includegraphics[scale=0.35]{figs/kernel.png}
+    \end{center}
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice (a)
+        \CorrectChoice (b)
+        \choice (c)
+        \choice None of the above
+    \end{checkboxes}
+    
+    
+\end{questions}
+
+
+
+
+\clearpage
+\section{Learning Theory}
+\begin{questions}
+\question \solo Alex is given a classification task to solve. 
+\begin{parts}
+    \part[3] \solo He has no idea where to start, so he decided to try out a decision tree learner with 2 binary features $X_1$ and $X_2$. He recently learned about PAC learning, and would like to know what is the minimum number ($N$) of data points that would suffice for the PAC criterion with $\epsilon = 0.1$ and $\delta = 0.01$. 
+    
+    Notice that a valid decision tree may or may not be full, meaning it doesn't have to split on all features.
+    
+    \textbf{Fill in the blank:}
+    
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \vspace{5pt}
+    \hspace{5pt}
+    %481 % if we consider all possible distinct Trees.
+    404 %- if we consider just X to Y mapping
+    % agnostic
+    \end{tcolorbox} 
+    
+    
+    \part[2] \solo Sally thinks Alex shouldn't have used a decision tree with 2 binary features. Instead, she thinks it would be best to use logistic regression with 16 real-valued features in addition to a bias term. Sally overherd Alex talking about this cool concept called PAC learning and she too would like to use it to analyze her method. She first trains her logistic regression model on $N$ examples to obtain a training error $\hat R$. What is the the upper bound on the true error $R$ in terms of $\hat R$, $\delta$, and $N$. You may use big-$\mathcal{O}$ notation.
+    
+    \textbf{Fill in the blank:}
+    
+    \begin{tcolorbox}[fit,height=1cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    
+    %solution
+ 	Upper bound on R,   
+    $$\hat{R} + \mathcal{O}\left(\sqrt{\frac{1}{N}\left(17 + \log(\frac{1}{\delta})\right)}\right)$$
+    \end{tcolorbox} 
+    
+    
+    \part[3] \solo Sally wants to argue her method has lower bound on the true error. Assuming Sally has obtained enough data points to satisfy PAC criterion with $\epsilon = 0.1$ and $\delta = 0.01$. Which of the following is true?
+    
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice Sally is wrong. Alex's method will always classify unseen data more accurately since it is simpler as it only needs 2 binary features.
+        \choice She must first regularize her model by removing 14 features to make any comparison at all.
+        \choice It is sufficient to show that the VC Dimension of her classifier is higher than Alex's, therefore having lower bound for the true error.
+        \CorrectChoice It is necessary to show that the training error she achieves is lower than the training error Alex achieves.
+		% Both have same epsilon. So, inorder to get lower R, Sally would need lower R_hat as R - R_hat <= eps.       
+        
+    \end{checkboxes}
+    
+\end{parts}
+
+% SLT-Corollaries with Infinite Hypothesis Spaces
+\question[4] \solo In lecture, we saw that we can use our sample complexity bounds to derive bounds on the true error for a particular algorithm. Use the sample complexity bound for the infinite, agnostic case:
+$$N = O\left(\frac{1}{\epsilon^2} \left[\vcdim + \log(\frac{1}{\delta}) \right] \right)$$
+to prove that with probability at least $(1-\delta)$: $$R(h) \le \hat{R}(h) + O\left(\sqrt{\frac{1}{N} \left[\vcdim + \log(\frac{1}{\delta}) \right]} \right)$$
+    Hint: Start by applying the definition of big-O notation (i.e. if $N = O(M)$ (for some value $M$), then there exists a $c \in \mathbb{R}$ such that $N \le cM$).
+    
+    \begin{your_solution}[height=12cm, width=14cm]
+    \vspace{-5pt}
+	Given,
+	\[N = O\left(\frac{1}{\epsilon^2} \left[\vcdim + \log(\frac{1}{\delta}) \right] \right)\]    
+	\[\therefore N \leq c\left(\frac{1}{\epsilon^2} \left[\vcdim + \log(\frac{1}{\delta}) \right] \right)\]
+	where $c \in \mathbb{R}$ is some constant 
+	
+	Rearranging leads to 
+	\[\epsilon^2 \leq c\left(\frac{1}{N} \left[\vcdim + \log(\frac{1}{\delta}) \right] \right)\]
+	\[\epsilon = O\left(\sqrt{\frac{1}{N} \left[\vcdim + \log(\frac{1}{\delta}) \right] }\right) \tag{1}\]
+	
+	From PAC criterion, with at least a probability of $1 - \delta$,
+	\[R(h) - \hat{R}(h) \leq \epsilon\]
+	\[R(h) \leq \hat{R}(h) + \epsilon \tag{2}\]
+
+Substituting bound from (1) in (2)
+
+	\[R(h) \leq \hat{R}(h) + O\left(\sqrt{\frac{1}{N} \left[\vcdim + \log(\frac{1}{\delta}) \right] }\right) \]
+
+
+	
+    
+    \end{your_solution}
+    
+    
+    
+\question[3] \group Consider an arbitrary decision tree learner applied to data where each example is described by $M$ binary attributes, with no overlapping points (i.e. no points have identical attributes but different labels). Your friend Paul says that no matter the value of $M$, a decision tree can always shatter $2^M$ points. Is Paul wrong? If so, provide a counterexample. If Paul is right, briefly explain why in 1-2 \emph{concise} sentences.
+    
+    \begin{your_solution}[fit,height=4cm, width=14cm]    
+    %solution
+    %I believe Paul is wrong. Consider M=2 binary attributes per example. According to Paul's statement, the decision tree should be able to shatter $2^M = 4$ data points - (0, 0), (0, 1), (1, 0), (1, 1). Now, consider that the set of diagonally opposite points [(0, 1), (1,0)], [(0, 0), (1, 1)] have the same labels. The decision can only splitThus, the decision tree would not be able to split on either attribute 1 or 2 or any combination to satisfy this labelling. 
+    I believe Paul is right. A decision tree can split on one of the attributes and then split on some other attribute next along each tree path. Thus, the decision tree can end up forming a balanced binary tree with a capacity of having $2^M$ specific leaves, if required. This allows it to satisfy any labelling for $2^M$ data points where each point has M attributes.
+    \end{your_solution}   
+    
+    
+    
+\question \group Consider instance space $\Xc$ which is the set of real numbers. 
+\begin{parts}
+\part[3] \group What is the VC dimension of hypothesis class $H$, where each hypothesis $h$ in $H$ is of the form  ``if $a < x < b$ or $c < x < d$ then $y = 1$; otherwise $y = 0$"?  (i.e., $H$ is an infinite hypothesis class where $a, b, c$, and $d$ are arbitrary real numbers).
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice 2
+        \choice 3
+        \CorrectChoice 4
+        \choice 5
+        \choice 6
+    \end{checkboxes}
+
+    
+\part[3] \group Given the set of points in $\Xc$ below, construct a labeling of some subset of the points to show that any dimension larger than your choice of VC dimension in part (a) by \emph{exactly} 1 is incorrect (e.g.  if the VC dimension of $H$ is 3, only fill in the answers for 4 of the points). Fill in the boxes such that for each point in your example, the corresponding label is either $1$ or $0$ (for points you are not using in your example, leave the boxes blank).\\
+
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[scale=2]
+\draw[latex-latex] (-3.5,0) -- (3.5,0) ; %edit here for the axis
+\foreach \x in  {-3,-2,-1,0,1,2,3} % edit here for the vertical lines
+\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+\foreach \x in {-3,-2,-1,0,1,2,3} % edit here for the numbers
+\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] 
+{$\x$};
+\draw[o-o] (-3,0.0425);
+\draw[o-o] (-2,0.0425);
+\draw[o-o] (-1,0.0425);
+\draw[o-o] (0,0.0425);
+\draw[o-o] (1,0.0425);
+\draw[o-o] (2,0.0425);
+\draw[o-o] (3,0.0425);
+\end{tikzpicture}
+\\
+\begin{list}{}
+    \item -3:  \qquad
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \end{tcolorbox}
+    \item -2:  \qquad
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \vspace{5pt}
+        \hspace{5pt}
+        1
+        \end{tcolorbox}
+    \item -1:  \qquad         
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \vspace{5pt}
+        \hspace{5pt}
+        0
+        \end{tcolorbox}
+    \item 0:  \qquad             
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \vspace{5pt}
+        \hspace{5pt}
+        1
+        \end{tcolorbox}
+    \item 1:  \qquad             
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \vspace{5pt}
+        \hspace{5pt}
+        0
+        \end{tcolorbox}
+    \item 2:  \qquad             
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \vspace{5pt}
+        \hspace{5pt}
+        1
+        \end{tcolorbox}
+    \item 3:  \qquad             
+        \begin{tcolorbox}[fit,height=0.5cm, width=1cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        %solution
+        \end{tcolorbox}
+\end{list}
+    
+\end{parts}
+\end{questions}
+
+\clearpage
+
+\section{MLE/MAP}
+\begin{questions}
+
+    \question[3] \solo \textbf{True or False:} Suppose you place a Beta prior over the Bernoulli distribution, and attempt to learn the parameter of the Bernoulli distribution from data. Further suppose an adversary chooses ``bad", but finite hyperparameters for your Beta prior in order to confuse your learning algorithm. As the number of training examples grows to infinity, the MAP estimate of $\theta$ can still converge to the MLE estimate of $\theta$.
+    
+    \textbf{Select One:}
+    
+    \begin{checkboxes}
+        \CorrectChoice True
+        \choice False
+    \end{checkboxes}
+    
+    
+    \question[3] \solo Let $\Theta$ be a random variable with the following probability density function (pdf): 
+    \begin{align*}
+        f(\theta) &= 
+        \begin{cases}
+        2\theta  & \text{if } 0 \leq \theta \leq 1 \\
+        0  & \text{otherwise}
+        \end{cases}
+    \end{align*}
+    
+    Suppose another random variable Y, which is conditioning on $\Theta$, follows an exponential distribution with  $\lambda=3\theta$. Recall that the exponential distribution with parameter $\lambda$ has the following pdf:
+    
+    %$f(y)=\lambda e^{-\lambda y}$ if $y\geq 0$, otherwise $f(y)=0$
+    
+    \begin{align*}
+        f_{exp}(y) &= 
+        \begin{cases}
+        \lambda e^{-\lambda y}  & \text{if } y\geq 0 \\
+        0  & \text{otherwise}
+        \end{cases}
+    \end{align*}
+    
+    What is the MAP estimate of $\Theta$ given $Y=\frac{2}{3}$ is observed?
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice 0
+        \choice 1/3
+        \CorrectChoice 1
+        % What a question -_-
+        \choice 2
+    \end{checkboxes}
+    
+    
+    \question[3] \solo In HW3, you have derived the closed form solution for linear regression. Now, we are coming back to linear regression, viewing it as a statistical model, and deriving the MLE and MAP estimate of the parameters in the following questions. 
+    
+    As a reminder, in MLE, we have
+    \begin{align*}
+        \hat{\theta}_{MLE} &= \argmax_\theta p(\Dc | \theta)
+    \end{align*}
+    For MAP, we have
+    \begin{align*}
+        \hat{\theta}_{MAP} &= \argmax_\theta p(\theta|\Dc)
+    \end{align*}
+    
+    Assume we have data $D = \{\mathbf{x}^{(i)}, y^{(i)}\}_{i=1}^{N}$, where $\mathbf{x}^{(i)} = (x_1^{(i)}, \cdots, x_M^{(i)})$ . So our data has $N$  instances and each instance has $M$  attributes/features. Each $y^{(i)}$ is generated given $\mathbf{x}^{(i)}$ with additive noise $\epsilon^{(i)} \sim N(0, \sigma^2)$, that is $y^{(i)} = \mathbf{w}^T \mathbf{x}^{(i)} + \epsilon^{(i)}$ where $\mathbf{w}$  is the parameter vector of linear regression. Given this assumption, what is the distribution of y? 
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \CorrectChoice $y^{(i)} \sim N(\mathbf{w}^T \mathbf{x}^{(i)}, \sigma^2)$
+        \choice $y^{(i)} \sim N(0, \sigma^2)$
+        \choice $y^{(i)} \sim \text{Uniform}(\mathbf{w}^T \mathbf{x}^{(i)} - \sigma,  \mathbf{w}^T \mathbf{x}^{(i)} + \sigma)$
+        \choice None of the above
+    \end{checkboxes}
+    
+    
+    \question[3] \solo The next step is to learn the MLE of the parameters of the linear regression model. Which expression below is the correct conditional log likelihood $\ell(\mathbf{w})$ with the given data?
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \CorrectChoice $\sum_{i=1}^{N} [-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+        \choice $\sum_{i=1}^{N} [\log (\sqrt{2\pi\sigma^2}) + \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+        \choice $\sum_{i=1}^{N} [-\log(\sqrt{2\pi\sigma^2)} - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})]$
+        \choice $-\log (\sqrt{2\pi\sigma^2}) + \sum_{i=1}^{N} [-\frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+    \end{checkboxes}
+    
+    
+    \question[3] \solo Then, the MLE of the parameters is just  $\argmax_{\mathbf{w}} \ell(\mathbf{w})$ . Among the following expressions, select ALL that can yield the correct MLE. 
+
+    \textbf{Select all that apply:}
+    {\checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \choice $\argmax_{\mathbf{w}} \sum_{i=1}^{N} [-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})]$
+        \CorrectChoice $\argmax_{\mathbf{w}} \sum_{i=1}^{N} [-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+        \CorrectChoice $\argmax_{\mathbf{w}} \sum_{i=1}^{N} [- \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+        \choice $\argmax_{\mathbf{w}} \sum_{i=1}^{N} [- \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})]$
+        \CorrectChoice $\argmax_{\mathbf{w}} \sum_{i=1}^{N} [- \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2]$
+    \end{checkboxes}
+    }
+    
+    
+    \question[3] \solo According to the above derivations, is the MLE for the conditional log likelihood equivalent to minimizing mean squared errors (MSE) for the linear regression model when making predictions? Why or why not? 
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice Yes, because the derivative of the negative conditional log-likelihood has the same form as the derivative of the MSE loss. 
+        \CorrectChoice Yes, because the parameters that maximize the conditional log-likelihood also minimize the MSE loss.
+        \choice No, because one is doing maximization and the other is doing minimization.
+        \choice No, because the MSE has an additional error term $\epsilon^{(i)}$ in the expression whereas the quantity to be minimized in MLE does not. 
+        % Because of the bias term also being present in MSE. However, if we are just considering w.r.t w then opt. 2.
+        \choice No, because the conditional log-likelihood has additional constant terms that do not appear in the MSE loss.
+    \end{checkboxes}
+    
+    \question[3]\solo Now we are moving on to learn the MAP estimate of the parameters of the linear regression model. Which expression below is the correct optimization problem the MAP estimate is trying to solving? (recall that $D$ refers to the data, and $\mathbf{w}$ to the regression parameters (weights)).
+    
+    
+    \textbf{Select all that apply:}
+    {\checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \CorrectChoice $\mathbf{w}_{MAP} = \arg\max_{\mathbf{w}} p(D, \mathbf{w})$
+        \CorrectChoice $\mathbf{w}_{MAP} = \arg\max_{\mathbf{w}} \frac{p(D| \mathbf{w})p(\mathbf{w})}{p(D)}$
+        \choice $\mathbf{w}_{MAP} = \arg\max_{\mathbf{w}} \frac{p(D, \mathbf{w})}{p(\mathbf{w})}$
+        \CorrectChoice $\mathbf{w}_{MAP} = \arg\max_{\mathbf{w}} p(D| \mathbf{w})p(\mathbf{w})$
+        \CorrectChoice $\mathbf{w}_{MAP} = \arg\max_{\mathbf{w}} p(\mathbf{w}| D)$
+    \end{checkboxes}
+    }
+    
+    
+    \question[3]\solo Suppose we are using a Gaussian prior distribution with mean 0 and variance $\frac{1}{\lambda}$ for each element $w_m$  of the parameter vector $\mathbf{w} (1 \leq m \leq M $), i.e. $w_m \sim N(0, \frac{1}{\lambda})$. Assume that $w_1, \cdots, w_M$ are mutually independent of each other. Which expression below is the correct log joint-probability of the data and parameters $\log p(D, \mathbf{w}))$?  Please show your work below.
+
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice $-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 - \sum_{m=1}^M \log(\sqrt{2\pi\lambda}) - \lambda (w_m)^2$
+        \choice $-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)}) + \sum_{m=1}^M -\log(\sqrt{2\pi\lambda}) - \lambda (w_m)^2$
+        \choice $-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)}) -  \sum_{m=1}^M \log(\sqrt{\frac{2\pi}{\lambda}}) - \frac{\lambda}{2}(w_m)^2$
+        \CorrectChoice $-\log (\sqrt{2\pi\sigma^2}) - \frac{1}{2\sigma^2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 +  \sum_{m=1}^M -\log(\sqrt{\frac{2\pi}{\lambda}}) - \frac{\lambda}{2}(w_m)^2$
+    \end{checkboxes}
+    
+        % YOUR ANSWER
+    
+        
+    
+    \question[3]\solo Maximizing the log posterior probability  $\ell_{\textit{MAP}}(\mathbf{w})$ gives you the MAP estimate of the parameters. Which one is correct to estimate the parameters using $\max_{\mathbf{w}} \ell_{\textit{MAP}}(\mathbf{w})$ based on your derived log posterior probability in the previous question?  With the result, please specify how the MAP estimate with Gaussian prior related to the linear regression model.
+    
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice $\max_{\mathbf{w}} \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 + \frac{\lambda}{2}\|\mathbf{w}\|_2$
+        \CorrectChoice $\min_{\mathbf{w}} \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 + \frac{\lambda}{2}\|\mathbf{w}\|_2^2$
+        % The above question gives the maximization equivalent.
+        \choice $\max_{\mathbf{w}} \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 + \lambda\|\mathbf{w}\|_2$
+        \choice $\min_{\mathbf{w}} - \frac{1}{2} (y^{(i)} - \mathbf{w}^T\mathbf{x}^{(i)})^2 - \frac{\lambda}{2}\|\mathbf{w}\|_2^2$
+    \end{checkboxes}
+    
+    \begin{your_solution}[title=Your answer,height=5cm,width=15cm]
+        % YOUR ANSWER
+        The MAP estimate with Gaussian prior assumed that the weights, w, came from a Gaussian distribution with mean 0 and variance $\frac{1}{\lambda}$. By doing so, it assumes that the values of the weights would mostly be spread around 0 with a variance $\frac{1}{\lambda}$. So, while the conditional log probability of D given w gives the loss term equivalence of MSE that linear regression uses, thr prior information of w being spread around 0 enforces a L2 regularization term as part of the objective function. This term ensures that the $max_w$ would have a low value spread around 0 with a variance of $\frac{1}{\lambda}$.
+    \end{your_solution}
+    
+    
+    
+    
+    \question[2]\group A MAP estimator with a Gaussian prior $\mathcal{N}(0, \sigma^2)$ you trained gives significantly higher test error than train error. What could be a possible approach to fixing this? 
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice Increase variance $\sigma^2$
+        \CorrectChoice Decrease variance $\sigma^2$
+        \choice Try MLE estimator instead
+        \choice None of the above
+    \end{checkboxes}
+    
+
+    
+    \question[4]\group MAP estimation with what prior is equivalent to L1 regularization?  Please show your work below.
+
+    Note:\\
+    The pdf of a Uniform distribution over $[a,b]$ is $f(x) = \frac{1}{b-a}$ if $x \in [a,b]$ and 0 otherwise.\\
+    The pdf of an exponential distribution with rate parameter $a$ is $f(x) = a \exp(-a x)$ for $x > 0$.\\
+    The pdf of a Laplace distribution with location parameter $a$ and scale parameter $b$  is $f(x) = \frac{1}{2b} \exp \left( \frac{- |x - a| }{b} \right)$ for all $x \in \mathbb{R}$.
+    
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice Uniform distribution over $[- \mathbf{w}^T\mathbf{x}^{(i)}, \mathbf{w}^T\mathbf{x}^{(i)} ]$
+        \choice Exponential distribution with rate parameter $a = \frac{1}{2}$
+        \choice Exponential distribution with rate parameter $a = \mathbf{w}^T \mathbf{x}^{(i)}$
+        \CorrectChoice Laplace prior with location parameter $a = 0$
+        \choice Laplace prior with location parameter $a = \mathbf{w}^T \mathbf{x}^{(i)}$
+        \choice Uniform distribution over [-1, 1]
+    \end{checkboxes}
+    
+    
+    \begin{your_solution}[title=Your answer,height=13cm,width=15cm]
+        % YOUR ANSWER
+        \vspace{-5pt}
+        Consider a Laplace prior with location parameter $a = 0$. So, the prior in the MAP log estimate is given by
+        \[l_{w} = argmax_w \log\left[\left(\prod\limits_{j=1}^M \frac{1}{2b}e^{-\frac{|w_j - 0|}{b}}\right)\right]\]
+        \[l_{MAP} = argmax_w \sum \limits_{j = 1}^M \left[\log(\frac{1}{2b}) - \frac{1}{b}|w_j|\right]\]
+        \[l_{MAP} = argmax_w M\log(\frac{1}{2b}) - \frac{1}{b}\sum \limits_{j = 1}^M |w_j|\]
+        
+        For the purpose of finding parameters maximizing the above terms, we can remove all the constant (with respect to w) terms. Therefore, ignore terms - $M\log(\frac{1}{2b})$.
+        \[\therefore l_{MAP} = argmax_w - \frac{1}{b}\sum \limits_{j = 1}^M |w_j|\]
+        
+        Therefore, maximizing above is the same as minimizing the negative of above term.\newline
+        $\therefore l_{MAP} = argmin_w \lambda\sum \limits_{j = 1}^M |w_j|$
+        
+        From the above, it can be seen that the regularization/penalizing term generated by a Laplace prior with $a = 0$ is a L1 regularization with the regularization parameter $\lambda = \frac{1}{b}$   
+         \end{your_solution}
+    
+    \question[2]\group When we estimate linear regression, we naturally choose the objective function of mean square error: 
+    $MSE(\theta; \Dc)=\frac{1}{n} \sum_{i=1}^n (y_i - \mathbf{\theta}^T\mathbf{x}_i)^2$.
+    We could instead minimize the weighted mean squared error: $WMSE(\theta; \Dc, \av)=\frac{1}{n} \sum_{i=1}^n a_i(y_i - \mathbf{\theta}^T\mathbf{x}_i)^2$ where $a_1, ... a_n$ are fixed weights of the training examples that are given alongside the training data. This includes ordinary least squares as the special case where all the weights $a_i=1$. Please suggest one reason that we would prefer minimizing weighted mean square error instead of just mean square error.
+    
+    
+    \begin{your_solution}[title=Your answer,height=10cm,width=15cm]
+        % YOUR ANSWER
+        Consider a set of training data of size 1000 corresponding to the task of Anomaly Detection. Since the positive cases (anomalies) are rare, the overall number of dataset with $y^{(i)} = 1$ is very less as compared to that equalling 0. So, say 5 training data points correspond to positive cases. 
+        
+        Now with an objective function such as MSE, the linear regression estimate could end up marking every training point as 0 and would still end up with a very low train error (0.5\%). However, as per the task misclassifying the anomalies could lead to some really serious issues. So, as a need to ensure that the model is punished more for misclassifying an anomaly, the corresponding objective term needs to be weighted more.\newline
+        
+        Generalizing, a WMSE allows us to provide the right importance for each data point, thereby providing a prior knowledge regarding the data point distribution rather than treating them all equally.
+    \end{your_solution}
+    
+    
+    \question[4]\group Suppose we define a new regression model. Each $y^{(i)}$ is generated given $\mathbf{x}^{(i)}$ with additive noise $\epsilon^{(i)} \sim N(0, \sigma_i^2)$, that is $y^{(i)} = \mathbf{w}^T \mathbf{x}^{(i)} + \epsilon^{(i)}$. Unlike the standard regression model we've worked with until now, there is now an example specific variance $\sigma_i^2$.
+    
+    Show that maximizing the log-likelihood of this new model is equivalent to minimizing a weighted mean squared error in the box below. Then select the correct value of $a_i$ in the weighted mean squared error.
+    
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice $\frac{1}{y_i}$
+        \CorrectChoice $\frac{1}{\sigma_i^2}$
+        \choice $\frac{1}{x_i^2}$
+        \choice $\frac{1}{\theta_i}$
+    \end{checkboxes}
+    \textbf{Justification}
+    
+    
+    \begin{your_solution}[title=Justification,height=10cm,width=15cm]
+    
+    \[l_{MLE} = argmax_w \log(\frac{1}{\sqrt{2\pi\sigma_i^2}} e^{-\frac{(y^{(i)} - w^Tx^{(i)})^2)}{2\sigma_i^2}})\]
+    
+    \[l_{MLE} = argmax_w - \log(\sqrt{2\pi\sigma_i^2}) -\frac{1}{2\sigma_i^2}(y^{(i)} - w^Tx^{(i)})^2\]
+    
+    Maximizing above log likelihood is the same as minimizing the negative log likelihood.
+    
+    \[l_{MLE} = argmin_w \log(\sqrt{2\pi\sigma_i^2}) + \frac{1}{2\sigma_i^2}(y^{(i)} - w^Tx^{(i)})^2\]
+    
+    Removing terms which are constant with respect to the parameter (w).
+    
+    \[\therefore l_{MLE} = argmin_w \frac{1}{2\sigma_i^2}(y^{(i)} - w^Tx^{(i)})^2\]
+    
+    The $\frac{1}{2}$ is common across all i examples. So, the weight for the ith data point is $\frac{1}{\sigma_i^2}$
+    \end{your_solution}
+
+\end{questions}
+
+\clearpage
+
+\section{Naive Bayes}
+\begin{questions}
+    \question[3] \solo I give you the following fact: for events A and B, $P(A\mid B) = 2/3$ and $P(A\mid \neg B) = 1/3$, where $\neg B$ denotes the complement of $B$. Do you have enough information to calculate $P(B\mid A)$? If not, choose ``not enough information", if so, compute the value of $P(B\mid A)$.
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice 1/2
+        \choice 2/3
+        \choice 1/3
+        \CorrectChoice Not enough information
+    \end{checkboxes}
+    
+    
+    \question[3] \solo Instead if I give you for events $A$ and $B$, $P(A\mid B) = 2/3$, $P(A\mid \neg B) = 1/3$ and $P(B) = 1/3$ and $P(A) = 4/9$, where $\neg B$ denotes the complement of $B$. Are the information consistent to calculate $P(B\mid A)$? If not, choose ``conflicting information", if so, compute the value of $P(B\mid A)$.
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \CorrectChoice 1/2
+        \choice 2/3
+        \choice 1/3
+        \choice Conflicting information
+    \end{checkboxes}
+    
+    
+    \question[4] \solo Suppose that 0.3$\%$ people have cancer. Someone decided to take a medical test for cancer. The outcome of the test can either be positive (cancer) or negative (no cancer). The test is not perfect - among people who have cancer, the test comes back positive 97\% of the time. Among people who don’t have cancer, the test comes back positive 4\% of the time. For this question, you should assume that the test results are independent of each other, given the true state (cancer or no cancer). What is the probability of a test subject having cancer, given that the subject’s test result is positive?
+    
+    If your answer is in decimals, answer with precision 4, e.g. (6.051, 0.1230, 1.234e+7)
+
+    \textbf{Fill in the blank:}
+    
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+    \vspace{5pt}
+    \hspace{5pt}
+    0.0680
+    \end{tcolorbox}
+    
+    
+    \question[3] \solo Which of the following machine learning algorithms are probabilistic generative models?
+
+    \textbf{Select one:}
+    \begin{checkboxes}
+        \choice Decision Tree
+        \choice K-nearest neighbors
+        \choice Perceptron
+        \CorrectChoice Naive Bayes
+        \choice Logistic Regression
+        \choice Feed-forward neural network
+    \end{checkboxes}
+    
+
+    \question[2]\solo Select all possible decision boundary that can be produced by a Gaussian Naïve Bayes classifier. The shaded region is assigned class 1 and the unshaded regions is assigned class 0.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.45]{figs/GNB_decision_boundary.png}
+    \end{figure}
+    
+    \textbf{Select all that apply:}
+    {\checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \CorrectChoice (a)
+        \CorrectChoice (b)
+        \choice (c)
+        \CorrectChoice (d)
+        \choice None of the above
+    \end{checkboxes}
+    }
+    
+    
+
+    \question[4]\group Logistic Regression and Naive Bayes. 
+
+When $Y$ is Boolean and $\Xv = \langle{X_{1}...X_{n}}\rangle$ is a vector of continuous variables, then the assumptions of the Gaussian Naive Bayes classifier imply that $P(Y \mid \Xv)$ is given by the logistic function with
+appropriate parameters $w_i$ for all $i$ and $b$. In particular:
+
+\begin{align*}
+    P(Y=1\mid\Xv)=\frac{1}{1+\exp(b+\sum_{i=1}^{n} w_iX_i)}
+\end{align*}
+and
+\begin{align*}
+    P(Y=0\mid\Xv)=\frac{\exp(b+\sum_{i=1}^{n} w_iX_i)}{1+\exp(b+\sum_{i=1}^{n} w_iX_i)}
+\end{align*}
+
+ Consider instead the case where $Y$ is Boolean and ${\Xv = \langle{X_{1}...X_{n}}}\rangle$ is a vector
+of Boolean variables.
+
+
+Since the $X_{i}$ are Boolean variables, you need only one parameter to define $P(X_{i}\mid{Y} = y_k)$. Define $\phi_{i1} \equiv P(X_{i} = 1\mid{Y = 1})$, in which case $P(X_{i} = 0\mid{Y = 1}) = (1-\phi_{i1}$). Similarly, use $\phi_{i0}$ to denote $P(X_{i} = 1|Y = 0)$. 
+
+\begin{enumerate}
+    \item Show that \footnotesize
+        $$\hspace*{-15mm}P(Y=1|X) = \frac{1}{1+\exp(\ln(\frac{1-\pi}{\pi}) +\sum_i \left[X_i\ln(\phi_{i0}) + \ln(1-\phi_{i0}) - X_i\ln(1-\phi_{i0}) - X_i\ln(\phi_{i1}) - \ln(1-\phi_{i1}) + X_i\ln(1-\phi_{i1}))\right]}$$ 
+        \normalsize
+        can be written in the form of a Gaussian Naive Bayes classifier by finding expressions for $P(Y=1|X)$ and $P(Y=0|X)$ in terms of $b$ and $w_i$. Explicitly define $b$ and $w_i$.
+        
+        \begin{tcolorbox}[fit,height=10cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+$P(Y=1|X) = \frac{P(Y=1) \prod \limits_{i=1}^n P(X_i | Y = 1)}{\prod \limits_{i=1}^n P(X_i)}$\newline
+$P(Y=1|X) = \frac{P(Y=1) \prod \limits_{i=1}^n P(X_i | Y = 1)}{P(Y=1) \prod \limits_{i=1}^n P(X_i | Y = 1) + P(Y=0) \prod \limits_{i=1}^n P(X_i | Y = 0)}$\newline
+$P(Y=1|X) = \frac{P(Y=1) \prod \limits_{i=1}^n \phi_{i1}^{X_i}(1 - \phi_{i1})^{1 - X_i}}{P(Y=1) \prod \limits_{i=1}^n \phi_{i1}^{X_i}(1 - \phi_{i1})^{1 - X_i} + P(Y=0) \prod \limits_{i=1}^n \phi_{i0}^{X_i}(1 - \phi_{i0})^{1 - X_i}}$\newline    
+$P(Y=1|X) = \frac{1}{1 + \frac{P(Y=0)}{P(Y=1)} \prod \limits_{i=1}^n (\frac{\phi_{i0}}{\phi_{i1}})^{X_i}(\frac{1 - \phi_{i0}}{1 - \phi_{i1}})^{1 - X_i}}$\newline
+$P(Y=1|X) = \frac{1}{1 + exp \left(\ln(\frac{P(Y=0)}{P(Y=1)}) + \sum \limits_{i=1}^n (X_i \ln(\frac{\phi_{i0}}{\phi_{i1}}) + \ln(\frac{1 - \phi_{i0}}{1 - \phi_{i1}}) - X_i \ln\frac{1 - \phi_{i0}}{1 - \phi_{i1}})\right)}$\newline
+
+Assuming $P(Y = 1)$ to be some value $\pi$.
+
+$P(Y=1|X) = \frac{1}{1 + exp \left(\left[\ln(\frac{1 - \pi}{\pi}) + \sum \limits_{i=1}^n \ln(\frac{1 - \phi_{i0}}{1 - \phi_{i1}}) \right]+  \sum \limits_{i=1}^n\left[X_i \ln(\frac{\phi_{i0} (1 - \phi_{i1})}{\phi_{i1} (1 - \phi_{i0}})\right]\right)} = \frac{1}{1 + exp \left(b +  \sum \limits_{i=1}^nw_iX_i\right)}$\newline
+
+where $w_i$ and $b$ are defined as: $w_i = \ln(\frac{\phi_{i0} (1 - \phi_{i1})}{\phi_{i1} (1 - \phi_{i0}})$ and $b = \ln(\frac{1 - \pi}{\pi}) + \sum \limits_{i=1}^n \ln(\frac{1 - \phi_{i0}}{1 - \phi_{i1}})$
+
+Similarly, \newline
+$P(Y = 0| X) =  1 - P(Y=1|X) = 1 - \frac{1}{1 + exp \left(\left[\ln(\frac{1 - \pi}{\pi}) + \sum \limits_{i=1}^n \ln(\frac{1 - \phi_{i0}}{1 - \phi_{i1}}) \right]+  \sum \limits_{i=1}^n\left[X_i \ln(\frac{\phi_{i0} (1 - \phi_{i1})}{\phi_{i1} (1 - \phi_{i0}})\right]\right)}$
+$\therefore P(Y = 0| X) =  \frac{exp \left(b +  \sum \limits_{i=1}^n w_iX_i\right)}{1 + exp \left(b +  \sum \limits_{i=1}^n w_iX_i\right)}$\newline
+    \end{tcolorbox}
+        
+\end{enumerate}
+
+    
+    \question[3] \group In a Naive Bayes problem, suppose we are trying to compute $P(Y\mid X_1,X_2,X_3,X_4)$.  Furthermore, suppose  $X_2$  and  $X_3$  are identical (i.e., $X_3$  is just a copy of $X_2$).  Which of the following are true in this case?
+
+    \textbf{Select all that apply:}
+    {\checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \CorrectChoice Naive Bayes will learn identical parameter values for $P(X_2|Y)$ and $P(X_3|Y)$.
+        \CorrectChoice Naive Bayes will output probabilities $P(Y|X_1,X_2,X_3,X_4)$ that are closer to 0 and 1 than they would be if we removed the feature corresponding to $X_3$.
+        \choice There is not enough information to determine the change in the output $P(Y|X_1,X_2,X_3,X_4)$.
+        \choice None of the above
+    \end{checkboxes}
+    }
+    
+    
+    
+    \question[4] \group Gaussian Naive Bayes in general can learn non-linear decision boundaries. Consider the simple case where we have just one real-valued feature $X_1\in\mathbb{R}$ from which we wish to infer the value of label $Y\in\{0,1\}$.The corresponding generative story would be:
+    
+    $Y \sim \text{Bernoulli}(\phi)$\\
+    $X_1 \sim \text{Gaussian}(\mu_y, \sigma^2_y)$\\
+    where the parameters are the Bernoulli parameter $\phi$  and the class-conditional Gaussian parameters $\mu_0, \sigma^2_0$ and $\mu_1, \sigma^2_1$   corresponding to $Y=0$ and $Y=1$ , respectively.
+
+    A linear decision boundary in one dimension, of course, can be described by a rule of the form ``if $X_1>c$  then $Y=1$, else $Y=0$", where $c$ is a real-valued threshold (see diagram provided). Is it possible in this simple one-dimensional case to construct a Gaussian Naive Bayes classifier with a decision boundary that cannot be expressed by a rule in the above form)?
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{Gaussians.png}
+    \end{figure}
+    
+    \textbf{Select all that apply:}
+    {\checkboxchar{$\Box$} \checkedchar{$\blacksquare$}
+    \begin{checkboxes}
+        \CorrectChoice Yes, this can occur if the Gaussians are of equal means and equal variances.
+        \CorrectChoice Yes, this can occur if the Gaussians are of equal means and unequal variances.
+        \choice Yes, this can occur if the Gaussians are of unequal means and equal variances. 
+        \CorrectChoice Yes, this can occur if the Gaussians are of unequal means and unequal variances.
+    \end{checkboxes}
+    }
+    
+     
+    \textbf{Draw the corresponding Gaussians and the decision boundaries: }
+    
+    
+    
+    \begin{your_solution}[title=Your answer,height=7cm,width=15cm]
+    \vspace{-5pt}
+        \includegraphics[width=0.5\textwidth]{graph.png}\newline
+        In the above, blue represents $Y=1$ and red represents $Y = 0$.
+        
+        The decision boundary: \newline
+        \[
+        Y = \begin{cases}
+		1, &\mbox{if }  -C < X1 < C\\
+		0 &\mbox{else }
+		\end{cases}
+		\]
+    \end{your_solution}
+
+    
+    
+    
+\end{questions}
+
+\clearpage\newpage
+\section{Collaboration Questions}
+After you have completed all other components of this assignment, report your answers to these questions regarding the collaboration policy. Details of the policy can be found \href{http://www.cs.cmu.edu/~mgormley/courses/10601/syllabus.html}{here}.
+\begin{enumerate}
+    \item Did you receive any help whatsoever from anyone in solving this assignment? If so, include full details.
+    \item Did you give any help whatsoever to anyone in solving this assignment? If so, include full details.
+    \item Did you find or come across code that implements any part of this assignment ? If so, include full details.
+\end{enumerate}
+
+\begin{your_solution}[height=6cm]
+% YOUR ANSWER 
+1 - No\newline
+2 - No\newline
+3 - No\newline
+\end{your_solution}
+\end{document}
