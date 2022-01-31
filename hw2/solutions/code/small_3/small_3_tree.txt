@@ -1,7 +1,0 @@
-[15 democrat/13 republican]
-| Anti_satellite_test_ban = n: [2 democrat/12 republican]
-| | Export_south_africa = n: [0 democrat/5 republican]
-| | Export_south_africa = y: [2 democrat/7 republican]
-| Anti_satellite_test_ban = y: [13 democrat/1 republican]
-| | Export_south_africa = n: [0 democrat/1 republican]
-| | Export_south_africa = y: [13 democrat/0 republican]

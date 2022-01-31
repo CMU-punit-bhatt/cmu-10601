@@ -1,3 +1,0 @@
-fish	C
-eat	C
-you	C
